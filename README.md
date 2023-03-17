@@ -2,34 +2,34 @@
 
 
 ## Screenshot
-![screenshot](public/images/screenshot.png)
+![screenshot](https://github.com/KenYuChang/Restaurant_List/blob/main/public/image/%E6%88%AA%E5%9C%96%202023-03-17%20%E4%B8%8B%E5%8D%886.18.35.png)
 
 
-## About - 介紹
-這是一個練習使用 Node.js + Express 來架構一個簡單的餐廳搜索網站。
+## Introduction
+練習使用Node.js和Express的作品
 
-## Features - 功能
+## Features
 
 1. 你可點擊餐廳來查看更多資訊
 2. 可以使用餐廳名稱或是料理類型來搜尋餐廳
 3. 餐廳地址連結到 Google 地圖
 
-## Prerequisites - 環境建置與需求
+## Prerequisites
 
 * Node.js
-* Express "^4.16.4"
+* Express "^4.18.2"
 * Express-handlebars "^3.1.0"
 
-## Installation and execution - 安裝與執行步驟
+## Installation and execution
 
 1.開啟Terminal, Clone此專案至本機:
 ```
-git clone https://github.com/klu0926/ac-restaurant-list.git
+git clone https://github.com/KenYuChang/Restaurant_List.git
 ```
 
 2.進入存放此專案的資料夾
 ```
-cd restaurant_list_ac
+cd restaurant_list
 ```
 
 3.安裝 npm 套件
@@ -37,12 +37,7 @@ cd restaurant_list_ac
 npm install
 ```
 
-4.安裝nodemon (如果已經有可跳過)
-```
-npm install -g nodemon
-```
-
-5.啟動伺服器 (這會使用 nodemon 啟動專案)
+4.啟動伺服器 (這會使用 nodemon 啟動專案)
 ```
 npm run dev 
 ```
