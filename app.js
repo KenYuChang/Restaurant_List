@@ -39,9 +39,16 @@ app.get("/todos/new", (req, res) => {
 });
 app.post("/todos", (req, res) => {
   const name = req.body.name; //從req.body拿出表單裡的name
-  return Todo.create({ name }) //存入資料庫
+  return Todo.create({ name }) //存入資料庫 //直接命令mongoose不需要在伺服器建立實體
     .then(() => res.redirect("/")) //導回首頁
     .catch((error) => console.log("error"));
+});
+app.get("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  return Todo.findById(id)
+    .lean()
+    .then((todo) => res.render("detail", { todo }))
+    .catch((error) => console.log(error));
 });
 app.listen(port, (req, res) => {
   console.log(`App is running on http://localhost:${port}`);
