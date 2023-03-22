@@ -42,9 +42,9 @@ npm install
 npm run dev 
 ```
 
-6.當 terminal 出現以下字樣，表示伺服器已啟動並成功連結
+5.當 terminal 出現以下字樣，表示伺服器已啟動並成功連結
 ```
 server live on http://localhost:3000
 ```
 
-7.打開瀏覽器輸入http://localhost:3000 來使用本專案
+6.打開瀏覽器輸入http://localhost:3000 來使用本專案
