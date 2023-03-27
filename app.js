@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars");
 const bodyParser = require("body-parser");
 const port = 3000;
 const mongoose = require("mongoose");
+const methodOverride = require("method-override");
 const Todo = require("./models/todo");
 
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
@@ -28,6 +29,7 @@ db.once("open", () => {
 });
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(methodOverride("_method"));
 app.get("/", (req, res) => {
   Todo.find() //取出todo所有資料
     .lean() //不需要mongoose的module
@@ -58,7 +60,7 @@ app.get("/todos/:id/edit", (req, res) => {
     .then((todo) => res.render("edit", { todo }))
     .catch((error) => console.log(error));
 });
-app.post("/todos/:id/edit", (req, res) => {
+app.put("/todos/:id", (req, res) => {
   const id = req.params.id;
   const { name, isDone } = req.body; // const name = req.body.name && const isDone = req.body.isDone
   return Todo.findById(id)
@@ -70,7 +72,7 @@ app.post("/todos/:id/edit", (req, res) => {
     .then(() => res.redirect(`/todos/${id}`))
     .catch((error) => console.log(error));
 });
-app.post("/todos/:id/delete", (req, res) => {
+app.delete("/todos/:id", (req, res) => {
   const id = req.params.id;
   return Todo.findById(id)
     .then((todo) => todo.remove())
