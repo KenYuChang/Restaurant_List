@@ -2,6 +2,7 @@
 <ul>
   {{#each todos}}
     <li>
+      <input type="checkbox" name="isDone" {{#if this.isDone}} checked {{/if}} disabled>
       {{this.name}}
       {{! 透過Robo 3T 裡面自動建立_id }}
       <a href="./todos/{{this._id}}">detail</a>
