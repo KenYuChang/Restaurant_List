@@ -6,6 +6,7 @@ const port = 3000;
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const Todo = require("./models/todo");
+const routes = require("./routes");
 
 app.engine("hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
 app.set("view engine", "hbs");
@@ -30,55 +31,9 @@ db.once("open", () => {
 // 用 app.use 規定每一筆請求都需要透過 body-parser 進行前置處理
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.get("/", (req, res) => {
-  Todo.find() //取出todo所有資料
-    .lean() //不需要mongoose的module
-    .sort({ _id: "asc" }) // desc (倒序)
-    .then((todos) => res.render("index", { todos })) //資料傳給前端樣板
-    .catch((error) => console.log(error)); //錯誤處理
-});
-app.get("/todos/new", (req, res) => {
-  return res.render("new");
-});
-app.post("/todos", (req, res) => {
-  const name = req.body.name; //從req.body拿出表單裡的name
-  return Todo.create({ name }) //存入資料庫 //直接命令mongoose不需要在伺服器建立實體
-    .then(() => res.redirect("/")) //導回首頁
-    .catch((error) => console.log("error"));
-});
-app.get("/todos/:id", (req, res) => {
-  const id = req.params.id;
-  return Todo.findById(id)
-    .lean()
-    .then((todo) => res.render("detail", { todo }))
-    .catch((error) => console.log(error));
-});
-app.get("/todos/:id/edit", (req, res) => {
-  const id = req.params.id;
-  return Todo.findById(id)
-    .lean()
-    .then((todo) => res.render("edit", { todo }))
-    .catch((error) => console.log(error));
-});
-app.put("/todos/:id", (req, res) => {
-  const id = req.params.id;
-  const { name, isDone } = req.body; // const name = req.body.name && const isDone = req.body.isDone
-  return Todo.findById(id)
-    .then((todo) => {
-      todo.name = name;
-      todo.isDone = isDone === "on"; // 判斷true/ false
-      return todo.save();
-    })
-    .then(() => res.redirect(`/todos/${id}`))
-    .catch((error) => console.log(error));
-});
-app.delete("/todos/:id", (req, res) => {
-  const id = req.params.id;
-  return Todo.findById(id)
-    .then((todo) => todo.remove())
-    .then(() => res.redirect("/"))
-    .catch((error) => console.log(error));
-});
+
+app.use(routes);
+
 app.listen(port, (req, res) => {
   console.log(`App is running on http://localhost:${port}`);
 });
