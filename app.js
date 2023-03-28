@@ -1,5 +1,6 @@
 // require packages used in the project
 const express = require("express");
+const mongoose = require("mongoose");
 const app = express();
 const port = 3000;
 const restaurantList = require("./restaurant.json");
@@ -9,6 +10,21 @@ const exphbs = require("express-handlebars"); //載入express-handlebars
 app.engine("handlebars", exphbs({ defaultLayouts: "main" }));
 app.set("view engine", "handlebars");
 app.use(express.static("public"));
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.on("error", () => {
+  console.log("mongodb error");
+});
+db.once("open", () => {
+  console.log("mongodb connected!");
+});
 // routes setting
 app.get("/", (req, res) => {
   res.render("index", { restaurants: restaurantList.results });
