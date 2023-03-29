@@ -31,7 +31,7 @@ Node.js, Express, handlebars, mongoDB, mongoose, CRUD
 1. Clone the project
 
 ```
-git clone https://github.com/KevinHong71336099/Restaurant-List.git
+git clone https://github.com/KenYuChang/Restaurant_List.git
 ```
 
 2. Install the required dependencies
