@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Restaurant = require("../restaurant");
+const Restaurant = require("../Restaurant");
 const restaurantList = require("../../restaurant.json").results;
 
 if (process.env.NODE_ENV !== "production") {

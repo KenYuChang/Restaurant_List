@@ -79,6 +79,10 @@ header {
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+.btn-link {
+  text-decoration: none;
+}
+
 @media screen and (max-width: 992px) {
   .card img {
     height: 115px;
