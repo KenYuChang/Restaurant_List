@@ -18,13 +18,12 @@ Node.js, Express, handlebars, mongoDB, mongoose, CRUD
 6. 刪除餐廳功能
 
 ## Prerequisites
-
- "body-parser": "^1.20.2",
- "express": "^4.18.2",
- "express-handlebars": "^3.1.0",
- "method-override": "^3.0.0",
- "mongoose": "^5.9.7"
- "dotenv": "^16.0.3"
+ 
+- Runtime: node @ 14.16.0
+- Framework: express @ 4.18.2
+- Template Engine: express-handlebars @ 3.1.0
+- Database: MongoDB & mongoose @ 5.9.7
+- Check package.json for other dependencies
       
 
 ## Installation and execution
