@@ -33,8 +33,14 @@
               class="d-inline-block align-top"
               alt="我的餐廳清單"
             />
-            我的餐廳清單
+            {{#if isAuthenticated}}{{user.name}}'s {{/if}}
+            餐廳清單
           </a>
+          {{#if isAuthenticated}}
+            <a href="/users/logout" class="btn btn-primary btn-md">Logout</a>
+          {{else}}
+            <a href="/users/login" class="btn btn-primary btn-md">Login</a>
+          {{/if}}
         </div>
       </nav>
 
