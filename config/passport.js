@@ -12,7 +12,7 @@ module.exports = (app) => {
       User.findOne({ email })
         .then((user) => {
           if (!user) {
-            return done(null, falsse, {
+            return done(null, false, {
               message: "That email is not registed!",
             });
           }
@@ -30,10 +30,10 @@ module.exports = (app) => {
   passport.serializeUser((user, done) => {
     done(null, user.id);
   });
-  passport.deserializeUser((user, done) => {
-    User.findOne(id)
+  passport.deserializeUser((id, done) => {
+    User.findById(id)
       .lean()
       .then((user) => done(null, user))
-      .catch((err) => done(err, false));
+      .catch((err) => done(err, null));
   });
 };
