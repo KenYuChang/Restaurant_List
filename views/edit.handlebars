@@ -1,6 +1,6 @@
-<h1 class="mb-1 restaurant-show-title">編輯餐廳 - {{restaurantData.name}}</h1>
+<h1 class="mb-1 restaurant-show-title">編輯餐廳 - {{restaurant.name}}</h1>
 <div class="container">
-  <form action="/restaurants/{{restaurantData._id}}?_method=PUT" method="POST">
+  <form action="/restaurants/{{restaurant._id}}?_method=PUT" method="POST">
     <div class="mb-3">
       <label for="name" class="form-label">店名<span
           class="text-danger"
@@ -9,9 +9,9 @@
         type="text"
         class="form-control"
         id="name"
-        placeholder="Alpha 科技餐廳"
+        placeholder=""
         name="name"
-        value="{{restaurantData.name}}"
+        value="{{restaurant.name}}"
         required
       />
     </div>
@@ -23,9 +23,9 @@
         type="text"
         class="form-control"
         id="name_en"
-        placeholder="Alpha Tech Theme Restaurant"
+        placeholder=""
         name="name_en"
-        value="{{restaurantData.name_en}}"
+        value="{{restaurant.name_en}}"
         required
       />
     </div>
@@ -37,10 +37,10 @@
         type="text"
         class="form-control"
         id="category"
-        placeholder="美式"
+        placeholder=""
         list="categoryOptions"
         name="category"
-        value="{{restaurantData.category}}"
+        value="{{restaurant.category}}"
         required
       />
       {{! 使用datalist，讓使用者可選擇或自行輸入 }}
@@ -61,7 +61,7 @@
         class="form-control"
         id="image"
         name="image"
-        value="{{restaurantData.image}}"
+        value="{{restaurant.image}}"
         required
       />
     </div>
@@ -73,9 +73,9 @@
         type="text"
         class="form-control"
         id="location"
-        placeholder="台中市北屯區迷有這條路520號"
+        placeholder=""
         name="location"
-        value="{{restaurantData.location}}"
+        value="{{restaurant.location}}"
         required
       />
     </div>
@@ -87,9 +87,9 @@
         type="tel"
         class="form-control"
         id="phone"
-        placeholder="04-23456789"
+        placeholder=""
         name="phone"
-        value="{{restaurantData.phone}}"
+        value="{{restaurant.phone}}"
         required
       />
     </div>
@@ -102,7 +102,7 @@
         class="form-control"
         id="google_map"
         name="google_map"
-        value="{{restaurantData.google_map}}"
+        value="{{restaurant.google_map}}"
         required
       />
     </div>
@@ -118,7 +118,7 @@
         max="5"
         step="0.1"
         name="rating"
-        value="{{restaurantData.rating}}"
+        value="{{restaurant.rating}}"
         required
       />
     </div>
@@ -132,7 +132,7 @@
         rows="3"
         name="description"
         required
-      >{{restaurantData.description}}</textarea>
+      >{{restaurant.description}}</textarea>
     </div>
     <div class="text-center">
       <button type="submit" class="btn btn-primary">

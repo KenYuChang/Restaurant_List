@@ -5,6 +5,7 @@ const Restaurant = require("../../models/Restaurant");
 
 // 搜尋特定餐廳
 router.get("/search", (req, res) => {
+  const userId = req.user._id;
   if (!req.query.keywords) {
     res.redirect("/");
   }
@@ -12,7 +13,7 @@ router.get("/search", (req, res) => {
   const keywords = req.query.keywords;
   const keyword = req.query.keywords.trim().toLowerCase();
 
-  Restaurant.find({})
+  Restaurant.find({ userId })
     .lean()
     .then((restaurantsData) => {
       const filterRestaurantsData = restaurantsData.filter(
@@ -32,8 +33,9 @@ router.get("/new", (req, res) => {
 
 // 瀏覽特定餐廳
 router.get("/:restaurantId", (req, res) => {
-  const { restaurantId } = req.params;
-  Restaurant.findById(restaurantId)
+  const _id = req.params.restaurantId;
+  const userId = req.user._id;
+  Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurantData) => res.render("show", { restaurantData }))
     .catch((err) => console.log(err));
@@ -41,33 +43,51 @@ router.get("/:restaurantId", (req, res) => {
 
 // 新增餐廳
 router.post("/", (req, res) => {
-  Restaurant.create(req.body)
+  const userId = req.user._id;
+  const restaurantData = {
+    name: req.body.name,
+    name_en: req.body.name_en,
+    category: req.body.category,
+    image: req.body.image,
+    location: req.body.location,
+    phone: req.body.phone,
+    google_map: req.body.google_map,
+    rating: req.body.rating,
+    description: req.body.description,
+    userId: userId,
+  };
+  Restaurant.create({ ...restaurantData })
     .then(() => res.redirect("/"))
     .catch((err) => console.log(err));
 });
 
 // 編輯餐廳頁面
 router.get("/:restaurantId/edit", (req, res) => {
-  const { restaurantId } = req.params;
-  Restaurant.findById(restaurantId)
+  //必須用_id，不可以更改用別的名稱
+  const _id = req.params.restaurantId;
+  const userId = req.user._id;
+  Restaurant.findOne({ _id, userId })
     .lean()
-    .then((restaurantData) => res.render("edit", { restaurantData }))
+    .then((restaurant) => res.render("edit", { restaurant }))
     .catch((err) => console.log(err));
 });
 
 // 更新餐廳
 router.put("/:restaurantId", (req, res) => {
-  const { restaurantId } = req.params;
-  Restaurant.findByIdAndUpdate(restaurantId, req.body)
-    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
-    .then(() => res.redirect(`/restaurants/${restaurantId}`))
+  const _id = req.params.restaurantId;
+  const userId = req.user._id;
+  // 需設定useFindAndModify: false 才能使用findOneAndUpdate
+  Restaurant.findOneAndUpdate({ _id, userId }, req.body)
+    .then(() => res.redirect(`/restaurants/${_id}`))
     .catch((err) => console.log(err));
 });
 
 // 刪除餐廳
 router.delete("/:restaurantId", (req, res) => {
-  const { restaurantId } = req.params;
-  Restaurant.findByIdAndDelete(restaurantId)
+  const _id = req.params.restaurantId;
+  const userId = req.user._id;
+  // 需設定useFindAndModify: false 才能使用findOneAndDelete
+  Restaurant.findOneAndDelete({ _id, userId })
     .then(() => res.redirect("/"))
     .catch((err) => console.log(err));
 });
