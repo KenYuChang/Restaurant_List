@@ -6,7 +6,7 @@
 
 
 ## Introduction
-Node.js, Express, handlebars, mongoDB, mongoose, CRUD
+Node.js, Express, handlebars, mongoDB, mongoose, CRUD, passport-local, passport-facebook, bcryptjs
 
 ## Features
 
