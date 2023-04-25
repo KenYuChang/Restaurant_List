@@ -2,7 +2,7 @@
 
 
 ## Screenshot
-![screenshot](https://github.com/KenYuChang/Restaurant_List/blob/main/public/image/%E6%88%AA%E5%9C%96%202023-03-29%20%E4%B8%8B%E5%8D%883.59.12.png)
+![screenshot](https://github.com/KenYuChang/Restaurant_List/blob/main/public/image/%E6%88%AA%E5%9C%96%202023-04-25%20%E4%B8%8B%E5%8D%886.39.48.png)
 
 
 ## Introduction
@@ -16,11 +16,14 @@ Node.js, Express, handlebars, mongoDB, mongoose, CRUD
 4. 新增餐廳功能
 5. 編輯餐廳功能
 6. 刪除餐廳功能
+7. 新增註冊、登入功能
+8. 本地登入和臉書登入
+
 
 ## Prerequisites
  
 - Runtime: node @ 14.16.0
-- Framework: express @ 4.18.2
+- Framework: express @ 4.16.4
 - Template Engine: express-handlebars @ 3.1.0
 - Database: MongoDB & mongoose @ 5.9.7
 - Check package.json for other dependencies
