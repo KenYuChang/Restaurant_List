@@ -17,7 +17,7 @@ app.set("view engine", "handlebars");
 app.use(flash());
 app.use(
   session({
-    secret: "ThisIsMySecret",
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     useFindAndModify: false,
