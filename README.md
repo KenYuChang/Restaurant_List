@@ -6,7 +6,7 @@
 
 
 ## Introduction
-Node.js, Express, handlebars, mongoDB, mongoose, CRUD
+Node.js, Express, handlebars, mongoDB, mongoose, CRUD, passport-local, passport-facebook, bcryptjs
 
 ## Features
 
@@ -27,7 +27,9 @@ Node.js, Express, handlebars, mongoDB, mongoose, CRUD
 - Template Engine: express-handlebars @ 3.1.0
 - Database: MongoDB & mongoose @ 5.9.7
 - Check package.json for other dependencies
-      
+
+## 測試帳號:
+- 請到種子資料查詢
 
 ## Installation and execution
 
